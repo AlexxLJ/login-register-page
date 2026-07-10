@@ -3,6 +3,12 @@
 A simple and lightweight authentication UI built with **HTML**, **CSS**, and **JavaScript**.  
 Includes both **Login** and **Register** forms, plus a **password visibility toggle** for a better user experience.
 
+| Login | Register | Toggle |
+|-------|----------|--------|
+| <img src="assets/Login%20page.jpg" width="200"> | <img src="assets/360º%20rotation.jpg" width="200"> | <img src="assets/Register%20page.jpg" width="200"> |
+<!-- ![Login Screenshot](assets/360º%20rotation.jpg) -->
+<!-- ![Register Screenshot](assets/Login%20page.jpg) -->
+<!-- ![Password Toggle](assets/Register%20page.jpg) -->
 ---
 
 ## ✨ Features
