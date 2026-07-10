@@ -92,9 +92,46 @@ button:hover {
     transform: translateY(-50%);
     cursor: pointer;
 }
-.password-toggle i {
-    font-size: 1rem;
+.password-wrapper {
+  position: relative; 
+  width: 100%;
 }
-.password-visible i.fa-eye-slash {
-    display: none;
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 35px; 
+  box-sizing: border-box; }
+
+.password-toggle {
+  position: absolute; 
+  top: 40%; 
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer; 
+}
+
+.password-toggle i {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.remember-wrapper label {
+  font-size: 0.9rem;
+}
+
+
+
+
+.password-toggle2 {
+  position: absolute; 
+  top: 20%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer; 
+}
+
+.password-toggle2 i {
+  font-size: 1rem;
+  color: #555;
 }
