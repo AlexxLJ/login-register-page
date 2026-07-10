@@ -23,11 +23,12 @@ Includes both **Login** and **Register** forms, plus a **password visibility tog
 ---
 
 ## 📁 Project Structure
+```text
 /
 ├── index.html        # Main page with login & register forms
 ├── style.css         # UI styling
 └── script.js         # Form logic + toggle visibility
-
+```
 
 ---
 
