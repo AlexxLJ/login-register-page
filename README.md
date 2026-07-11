@@ -54,15 +54,16 @@ Login and Register forms are shown or hidden using CSS classes controlled by Jav
 
 ## 📌 Future Improvements
 
-### 🔹 Within this repository
+### 🔹 Within the original repository
 - Add a complete **README.md**  
 - Implement the **password visibility toggle** (done at 10/07/2026)
   
-### 🔹 In a new repository (planned for next week)
+### 🔹 In this new repository of mine (planned for next week)
+- Implement **Remember Password** functionality in the login form to store user credentials securely using localStorage.
 - Implement **JavaScript fetch()**  (done at 13/07/2026)
 - Connect to **Google Apps Script** to upload user data  (done at 14/07/2026)
 - Fix CORs errors (done at 15/07/2026)
-- Add **JavaScript alert messages** for user feedback  (done at 16/07/2026)
+- Add different**JavaScript alert messages** for user feedback  (done at 16/07/2026)
 
 ---
 
