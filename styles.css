@@ -87,7 +87,7 @@ button:hover {
 }
 .password-toggle {
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
@@ -100,14 +100,7 @@ button:hover {
 .password-wrapper input {
   width: 100%;
   padding-right: 35px; 
-  box-sizing: border-box; }
-
-.password-toggle {
-  position: absolute; 
-  top: 40%; 
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer; 
+  box-sizing: border-box; 
 }
 
 .password-toggle i {
@@ -121,17 +114,40 @@ button:hover {
 }
 
 
-
-
-.password-toggle2 {
-  position: absolute; 
-  top: 20%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer; 
+.username-wrapper {
+  position: relative;
+  width: 100%; 
 }
 
-.password-toggle2 i {
-  font-size: 1rem;
-  color: #555;
+.username-wrapper input[name="username"] {
+  width: 100%;
+  box-sizing: border-box; 
+  
+}
+
+.suggestions {
+  display: none;
+  position: absolute;
+  top: calc(100% - 10px); 
+  left: 0;
+  width: 100%; 
+  border: 1px solid #ccc;
+  background: white;
+  z-index: 10; 
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 4px; 
+  font-size: 14px; 
+  line-height: 1.2; 
+
+}
+
+.suggestion-item {
+  padding: 6px 8px; 
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background: #f0f0f0;
 }
