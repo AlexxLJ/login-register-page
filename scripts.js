@@ -66,24 +66,21 @@ const scriptUrl = "[website_name](url)";
 
 async function sendToServer(data) {
   try {
-    const response = await fetch(URL, {
+    const response = await fetch(scriptUrl, {
       method: "POST",
+      mode: "cors", 
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain"
       },
       body: JSON.stringify(data)
     });
-
-    const result = await response.json();
-    return result;
-
+    return await response.json(); 
   } catch (error) {
-    console.error("Request failed:", error);
-    return { status: "error", message: "fetch_failed" };
+    console.error("Network error:", error);
+    alert("❌ Network or server error.");
+    throw error;
   }
 }
-
-
 
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault();
