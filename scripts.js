@@ -1,16 +1,14 @@
 const flipCard = document.getElementById('flipCard');
-    const registerText = document.getElementById('registerText');
-    const loginText = document.getElementById('loginText');
+const registerText = document.getElementById('registerText');
+const loginText = document.getElementById('loginText');
 
-    registerText.addEventListener('click', () => {
-        flipCard.style.transform = 'rotateY(180deg)';
-    });
+registerText.addEventListener('click', () => {
+    flipCard.style.transform = 'rotateY(180deg)';
+});
 
-    loginText.addEventListener('click', () => {
-        flipCard.style.transform = 'rotateY(0deg)';
-    });
-
-
+loginText.addEventListener('click', () => {
+    flipCard.style.transform = 'rotateY(0deg)';
+});
 
 function togglePasswordVisibility() {
     const toggleBtn = event.currentTarget; 
@@ -24,6 +22,7 @@ function togglePasswordVisibility() {
     icon.classList.toggle("fa-eye");
     icon.classList.toggle("fa-eye-slash");
 }
+
 
 
 const usernameInput = document.querySelector('input[name="username"]');
@@ -62,6 +61,8 @@ usernameInput.addEventListener("input", () => {
 });
 
 
+
+
 const scriptUrl = "[website_name](url)";
 
 async function sendToServer(data) {
@@ -74,6 +75,7 @@ async function sendToServer(data) {
       },
       body: JSON.stringify(data)
     });
+
     return await response.json(); 
   } catch (error) {
     console.error("Network error:", error);
@@ -82,15 +84,98 @@ async function sendToServer(data) {
   }
 }
 
+async function registerUsers(formData) { 
+  const data = {
+
+    action : "register",
+    email: formData.get("email").trim(),
+    username: formData.get("username"),
+    password: formData.get("password"),
+
+  };
+
+  console.log("Sending register data:", data);
+
+  const result = await sendToServer(data);
+
+
+    if (result.status === "error" && result.message === "email_exists" || result.status === "error" && result.message === "username_exists") {
+      alert("❌ Have you forgotten the password?");
+      return;
+    }
+
+
+    if (result.status === "ok" && result.message === "Form_success"){
+      console.log("Data sent to Google Sheets successfully.");
+      alert("✅ Registration submitted successfully!");
+      return;
+    }
+
+  
+    alert("⚠️ Unexpected server response.");
+
+}
+
+
+  document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault(); 
+
+    const formData = new FormData(this);
+    
+    console.log("RegForm submit intercepted successfully!");
+    registerUsers(formData);
+  });
+
+  async function LoginUsers(formData) { 
+  const data = {
+    
+    action : "login",
+
+    username: formData.get("username"),
+    password: formData.get("password"),
+    
+  };
+
+  console.log("Checking credentials for...", data);
+
+
+   const result = await sendToServer(data);
+
+
+    if (result.status === "ok" && result.message === "user_exists") {
+      alert(`Welcome ${data.username}! We are already ${result.count} users.`);
+      console.log(`Login successful, We are already ${result.count} of us`);
+      
+  
+      return; 
+    } 
+  
+    if (result.status === "ok" && result.message === "Form_success") {
+      console.log("Data checked successfully.");
+      alert("✅ Login submitted successfully!");
+      return;
+    } 
+  
+    if (result.status === "error" && result.message === "invalid_credentials") {
+      alert("❌ Wrong credentials.");
+      return;
+    }
+  
+
+      alert("❌ We couldn't find your credentials or there was an error on the server.");
+    }
+
+
+
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-
+    
     const username = document.querySelector('input[name="username"]').value;
     const password = document.querySelector('input[name="password"]').value;
     const remember = document.getElementById("rememberPassword").checked;
 
-
+   
     if (remember) {
         let savedUsers = JSON.parse(localStorage.getItem("savedUsers")) || [];
         const exists = savedUsers.some(u => u.username === username);
@@ -107,51 +192,5 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 
     LoginUsers(formData);
 
-    console.log("Login enviado");
+    console.log("sent LoginForm");
 });
-
-
-async function LoginUsers(formData) { 
-  const data = {
-    
-    action : "login",
-
-    username: formData.get("username"),
-    password: formData.get("password"),
-    
-  };
-
-  console.log("Checking credentials for...", data);
-
-
-   const result = await sendToServer(data);
-
-
-    }
-
-
-async function registerUsers(formData) { 
-  const data = {
-
-    action : "register",
-    email: formData.get("email").trim(),
-    username: formData.get("username"),
-    password: formData.get("password"),
-
-  };
-
-  console.log("Sending register data:", data);
-
-  const result = await sendToServer(data);
-
-}
-
-
-  document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-
-    const formData = new FormData(this);
-    
-    console.log("RegForm submit intercepted successfully!");
-    registerUsers(formData);
-  });
